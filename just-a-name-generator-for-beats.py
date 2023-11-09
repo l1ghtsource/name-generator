@@ -25,8 +25,8 @@ def extract_random_adjective_noun(text):
         random_adjective = random.choice(adjectives)
         random_noun = random.choice(nouns)
         return f"{random_adjective} {random_noun}"
-        
-    return None
+    else:
+        return None
 
 
 # Функция для извлечения и перевода 5 случайных словосочетаний
@@ -51,7 +51,7 @@ def fetch_and_translate():
                 result_text.insert(tk.END, translated_phrase + "\n\n")
             else:
                 result_text.insert(tk.END, "Не удалось найти подходящее словосочетание.\n\n")
-                
+    else:
         result_text.insert(tk.END, "Не удалось загрузить страницу.")
 
 
