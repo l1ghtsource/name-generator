@@ -1,4 +1,5 @@
 # Тексты беру отсюда: https://www.hplovecraft.com/writings/texts/
+# average Lovecraft enjoyer
 
 import requests
 from bs4 import BeautifulSoup
@@ -8,16 +9,12 @@ from deep_translator import GoogleTranslator
 import tkinter as tk
 from tkinter import ttk
 
-# Загрузка модели для английского языка
 nlp = spacy.load("en_core_web_sm")
 
 
-# Функция для извлечения случайного прилагательного и существительного
 def extract_random_adjective_noun(text):
-    # Разбиваем текст на слова и используем NLP-модель для анализа
     doc = nlp(text)
 
-    # Извлекаем прилагательные и существительные из текста
     adjectives = [token.text for token in doc if token.pos_ == "ADJ"]
     nouns = [token.text for token in doc if token.pos_ == "NOUN"]
 
@@ -29,7 +26,6 @@ def extract_random_adjective_noun(text):
         return None
 
 
-# Функция для извлечения и перевода 5 случайных словосочетаний
 def fetch_and_translate():
     url = url_entry.get()
 
@@ -39,9 +35,8 @@ def fetch_and_translate():
         soup = BeautifulSoup(response.text, 'html.parser')
         text = soup.get_text()
 
-        result_text.delete(1.0, tk.END)  # Очистка предыдущего результата
+        result_text.delete(1.0, tk.END)
 
-        # Извлекаем и переводим 5 случайных словосочетаний
         for _ in range(5):
             random_phrase = extract_random_adjective_noun(text)
 
@@ -55,11 +50,9 @@ def fetch_and_translate():
         result_text.insert(tk.END, "Не удалось загрузить страницу.")
 
 
-# Создаем главное окно
 root = tk.Tk()
 root.title("Average Lovecraft Enjoyer")
 
-# Создаем и размещаем элементы интерфейса
 style = ttk.Style()
 style.configure("TButton", padding=(5, 5, 12, 12))
 
